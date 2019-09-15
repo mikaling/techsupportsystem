@@ -20,12 +20,12 @@ body
 .register-right
 {
 	border:none;
-	background:#f8f8f8;
-	border-top-left-radius:15% 50%;
-	border-bottom-left-radius:15% 50%;
+	background:#FFFFFF;
+	border-top-left-radius:15%;
+	border-bottom-left-radius:15%;
 	padding:50px;
 	width:1000px;
-		margin-bottom:100px;
+	margin-bottom:100px;
 	
 }
 .register-right h2
@@ -91,12 +91,15 @@ body
 	<div class="col-md-10offset=md-1">
 	<div class="row">
 	     <div class="col-md-5 register-left">
-		     <br><br><br><br><br><br><h3>Already Have an<br> Account?</h3>
-			 <a href="#">Login</a>
+		     <br><br><br><br><br><br><h3>Already have an<br> account?</h3>
+			 <a href="login">Login</a>
 		 </div>
 		 
 	<div class="col-md-7 register-right">
-	     <h2>Register Here</h2>
+			<h2>
+				Register Here
+				<img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
+		 	</h2>
 		 <div class="register-form">
 		    <div class="input-container">
               <i class="fa fa-user icon"></i>
