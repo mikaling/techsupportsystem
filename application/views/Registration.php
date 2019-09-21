@@ -24,7 +24,7 @@ body
 	border-top-left-radius:15%;
 	border-bottom-left-radius:15%;
 	padding:50px;
-	width:1000px;
+	width:1200px;
 	margin-bottom:100px;
 	
 }
@@ -94,40 +94,60 @@ body
 		     <br><br><br><br><br><br><h3>Already have an<br> account?</h3>
 			 <a href="login">Login</a>
 		 </div>
+	
+     
 		 
 	<div class="col-md-7 register-right">
+	 <?php
+	/*if(validation_errors()!='')
+	 {
+		 echo '
+		 <div class="alert alert-danger alert-dismissible">
+		    <a href="#" class="close" data-dismiss="alert"
+			  aria-label="close">&times;</a>
+			  ' . validation_errors() .'
+		  </div>
+		 ';
+	 }	*/	 
+	?>
+	
+	<form method="post" action="<?php echo base_url(); ?>index.php/User/insert_validation">
 			<h2>
 				Register Here
-				<img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
+			  <img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
 		 	</h2>
 		 <div class="register-form">
 		    <div class="input-container">
               <i class="fa fa-user icon"></i>
               <input class="input-field" type="text" placeholder="Full Name" name="name">
              </div>
+			 <span class="text-danger"><?php echo form_error('name'); ?></span>
 
             <div class="input-container">
               <i class="fa fa-key icon"></i>
               <input class="input-field" type="password" placeholder="Password" name="pass"> 
              </div>
+			 <span class="text-danger"><?php echo form_error('pass'); ?></span>
   
              <div class="input-container">
               <i class="fa fa-key icon"></i>
               <input class="input-field" type="password" placeholder="Confirm Password" name="con_pass">
             </div>
+			<span class="text-danger"><?php echo form_error('con_pass'); ?></span>
 			
 			 <div class="input-container">
               <i class="fa fa-envelope icon"></i>
               <input class="input-field" type="email" placeholder="Email" name="email">
             </div>
-			<br>
-			 <input type="radio" name="gender" value="male"> Male
-             <input type="radio" name="gender" value="female"> Female
-             <input type="radio" name="gender" value="other"> Other<br> 
+			<span class="text-danger"><?php echo form_error('email'); ?></span>
+			<div>
+			<?php //echo @$error; ?>
+			</div>
 
-			 <button type="button" class="btn btn-primary">Register</button>
+			 <input type="submit" class="btn btn-primary" name="register"value="Register">
 		 </div>
 	</div>
+	</form>
 	</div>
 	</div>
 	</div>
@@ -137,71 +157,3 @@ body
 
 
 
-<!--  Text
-
-
-<div class="register-form">
-		     <div class="form-group">
-			 <input type="text" class="form-control"placeholder="Name">
-			 </div>
-			 <div class="form-group">
-			 <input type="text" class="form-control"placeholder="Password">
-			 </div>
-			 <div class="form-group">
-			 <input type="email" class="form-control"placeholder="Confirm Password">
-			 </div>
-			 <div class="form-group">
-			 <input type="password" class="form-control"placeholder="Email Address">
-			 </div>
-			 <button type="button" class="btn btn-primary">Register</button>
-		 </div>
-
-
-
-
-
-
-<!--<form method="post">
-		<table width="600" align="center" border="1" cellspacing="5" cellpadding="5">
-	<tr>
-		<td colspan="2"><?php echo @$error; ?></td>
-	</tr>	
-  <tr>
-    <td width="230">Enter Your Name </td>
-    <td width="329"><input type="text" name="name"/></td>
-  </tr>
-  
-  <tr>
-    <td>Enter Your Email </td>
-    <td><input type="text" name="email"/></td>
-  </tr>
-  
-  <tr>
-    <td>Enter Your Password </td>
-    <td><input type="password" name="pass"/></td>
-  </tr>
- 
-  <tr>
-    <td>Enter Your Mobile </td>
-    <td><input type="text" name="mobile"/></td>
-  </tr>
-  
-  <tr>
-    <td>Select Your Course </td>
-    <td>
-	<select name="course">
-		<option value="">Select Course</option>
-		<option>PHP</option>
-		<option>Java</option>
-		<option>Wordpress</option>
-	</select>
-	</td>
-  </tr>
-  
-  <tr>
-    <td colspan="2" align="center">
-	<input type="submit" name="register" value="Register Me"/></td>
-  </tr>
-</table>
- 
-	</form>-->

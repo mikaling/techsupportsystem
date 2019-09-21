@@ -1,10 +1,11 @@
 <?php
    class UserModel extends CI_Model
    {
-	   public function __construct()
-	   {
-		  parent::__construct(); 
-	   }
+	  function insert($data)
+      {
+        $this->db->insert('users', $data);
+        return $this->db->insert_id();
+      }
    }   
  
 ?>

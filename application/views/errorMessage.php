@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-<title>Employee Login</title>
+<title>Employee Registration</title>
 <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <!--<link rel="stylesheet" type="text/css" href="<?php echo base_url()?>assets/css/registration.css">-->
@@ -25,20 +25,18 @@ body
 	border-bottom-left-radius:15%;
 	padding:50px;
 	width:1000px;
-		margin-bottom:100px;
+	margin-bottom:100px;
 	
 }
 .register-right h2
 {
-	
 	text-align:center;
 	margin-bottom:10px;
 	color:#555;
 }
 .register-form
 {
-	padding:60px;
-	height:300px;
+	padding:30px;
 
 }
 .register-right .btn-primary
@@ -64,7 +62,6 @@ body
   display: flex;
   width: 100%;
   margin-bottom: 10px;
-  padding:10px;
 }
 
 .icon {
@@ -93,35 +90,28 @@ body
 	<div class="row">
 	<div class="col-md-10offset=md-1">
 	<div class="row">
-	     <div class="col-md-5 register-left">
-		     <br><br><br><br><br><br><h3>Don't have an<br> account?</h3>
-			 <a href="register">Sign Up</a>
-		 </div>
-		 
-	<div class="col-md-7 register-right">
-	     <h2>
-		 	Log In
-			 <img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
-		 </h2>
-		 
-		 <div class="register-form">
-		    
-		 	<div class="input-container">
-              <i class="fa fa-envelope icon"></i>
-              <input class="input-field" type="email" placeholder="Email" name="email">
-            </div>
-
-            <div class="input-container">
-              <i class="fa fa-key icon"></i>
-              <input class="input-field" type="password" placeholder="Password" name="pass"> 
-             </div>
-
-			 <button type="button" class="btn btn-primary">Log In</button>
-		 </div>
-	</div>
+	  <div class="table-responsive">
+        <?php
+		 if($this->session->flashdata('action'))
+		 {
+			 echo '
+			 <div class="alert alert-danger alert-dismissible">
+		       <a href="#" class="close" data-dismiss="alert"
+			     aria-label="close">&times;</a>
+			     ' . $this->session->flashdata('acion') .'
+		      </div>
+			 ';
+		 }
+		?>	  
+	  </div>
+	 
+	    
 	</div>
 	</div>
 	</div>
 	</div>
 </body>
 </html>
+
+
+
