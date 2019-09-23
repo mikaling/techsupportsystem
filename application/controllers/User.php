@@ -5,11 +5,40 @@
 		{
 	         parent::__construct();
 			 $this->load->helper('url');
-             $this->load->database();
+			 $this->load->model('UserModel');
+			
 			 
 		}
 		public function login(){
 			$this->load->view('Login');
+			
+		}
+
+		public function loginValidation(){
+			// $this->form_validation->set_rules('email', 'Email', 'required');
+			// $this->form_validation->set_rules('pass', 'Password', 'required');
+
+			// if($this->form_validation)->run()){
+
+			// }
+
+			$result = $this->UserModel->can_login($this->input->post('email'), $this->input->post('pass'));
+			$userType = $this->session->userdata('user_type');
+			
+			if($result == ''){//if there's no error message:
+				//redirect based on user type
+				if($userType == "staff"){
+					redirect('user/insert');
+				}elseif($userType == "support"){
+					redirect('user/insert');
+				}else{
+					redirect('user/insert');
+				}
+				}else{//remain on login page and set flashdata message as error(see login view)
+					$this->session->set_flashdata('message',$result);
+					redirect('user/login');
+			}
+			
 		}
 		public function index()
 		{
@@ -34,18 +63,22 @@
 			}
 			else
 			{
-				$this->load->library('encrypt');
+				//$this->load->library('encrypt');
 				
+				$pass=$this->input->post('pass');
+				$pass_hash=password_hash($pass,PASSWORD_DEFAULT);
 				$data=array(
+				
 				     'name'  =>$this->input->post('name'),
 					 'email'  =>$this->input->post('email'),
-					 'pass'  =>$this->encrypt->encode($this->input->post('pass'))
+
+					 'password'  =>$pass_hash
 					 
 				);
-				$this->load->model('UserModel');
+				//$this->load->model('UserModel');
 				$this->UserModel->insert($data);
 				$this->session->set_flashdata('action','Data Inserted');
-				redirect('User');
+				redirect('User/login');
 				
 			}
 		}

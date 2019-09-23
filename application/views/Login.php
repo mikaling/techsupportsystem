@@ -38,7 +38,8 @@ body
 .register-form
 {
 	padding:60px;
-	height:300px;
+
+	height: 300px;
 
 }
 .register-right .btn-primary
@@ -99,6 +100,7 @@ body
 		 </div>
 		 
 	<div class="col-md-7 register-right">
+		<form method="post" action="<?php echo base_url(); ?>index.php/User/loginValidation">
 	     <h2>
 		 	Log In
 			 <img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
@@ -115,13 +117,23 @@ body
               <i class="fa fa-key icon"></i>
               <input class="input-field" type="password" placeholder="Password" name="pass"> 
              </div>
+			<?php
+				$message = $this->session->flashdata('message');
+				if (isset($message)) {
+				echo '<div class="alert alert-info">' . $message . '</div>';
+					//$this->session->unset_userdata('message');
+				}
 
-			 <button type="button" class="btn btn-primary">Log In</button>
+			?>
+			 <button type="submit" class="btn btn-primary" name="login" value="login">Log In</button>
 		 </div>
+		
+		 </form>
 	</div>
 	</div>
 	</div>
 	</div>
 	</div>
 </body>
+
 </html>
