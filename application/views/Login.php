@@ -96,7 +96,7 @@ body
 	<div class="row">
 	     <div class="col-md-5 register-left">
 		     <br><br><br><br><br><br><h3>Don't have an<br> account?</h3>
-			 <a href="register">Sign Up</a>
+			 <a href="insert">Sign Up</a>
 		 </div>
 		 
 	<div class="col-md-7 register-right">
