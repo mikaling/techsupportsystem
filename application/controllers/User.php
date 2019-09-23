@@ -55,7 +55,7 @@
 			$this->form_validation->set_rules('name','full name','required|trim');
 		    $this->form_validation->set_rules('email','email','required|trim');
 			$this->form_validation->set_rules('pass','password','required|trim');
-			$this->form_validation->set_rules('con_pass','confirm password','required|trim');
+			$this->form_validation->set_rules('con_pass','confirm password','required|trim|matches[pass]');
 			
 			if($this->form_validation->run()==false)
 			{
