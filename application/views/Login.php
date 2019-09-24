@@ -100,7 +100,7 @@ body
 		 </div>
 		 
 	<div class="col-md-7 register-right">
-		<form method="post" action="<?php echo base_url(); ?>index.php/User/loginValidation">
+		<form method="post" action="<?php echo base_url(); ?>User/loginValidation">
 	     <h2>
 		 	Log In
 			 <img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>

@@ -111,7 +111,7 @@ body
 	 }	*/	 
 	?>
 	
-	<form method="post" action="<?php echo base_url(); ?>index.php/User/insert_validation">
+	<form method="post" action="<?php echo base_url(); ?>User/insert_validation">
 			<h2>
 				Register Here
 			  <img src="<?php echo base_url();?>assets/images/index.jpg" style="float: right; width: 12%"/>
