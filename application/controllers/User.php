@@ -9,7 +9,7 @@
 			 //$this->load->view('Login');
 			 //$this->load->library('form_validation');
 			 //$this->session->keep_flashdata('message');
-			 
+
 		}
 		public function register()
 		{
@@ -18,9 +18,8 @@
 
 		public function login(){
 			$this->load->view('Login');
-			
 		}
-        
+
         public function logout() {
             $user_data = $this->session->all_userdata();
             foreach ($user_data as $key=>$value) {
@@ -42,12 +41,12 @@
 
 			$result = $this->UserModel->can_login($this->input->post('email'), $this->input->post('pass'));
 			$userType = $this->session->userdata('user_type');
-			
+
 			if($result == ''){//if there's no error message:
 				//redirect based on user type
 				if($userType == "staff"){
 					redirect('user/register');
-				}elseif($userType == "support"){
+				}elseif($userType == "support" || $userType == "admin"){
 					redirect('ticket');
 				}else{
 					redirect('user/register');
@@ -56,7 +55,14 @@
 					$this->session->set_flashdata('message',$result);
 					redirect('user/login');
 			}
-			
+
 		}
+
+    public function insert() {
+      $this->load->view('templates/header');
+      $this->load->view('templates/support_navbar');
+      $this->load->view('add_user');
+      $this->load->view('templates/footer');
+    }
 	}
 	?>

@@ -8,7 +8,7 @@
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav">
           <li class="nav-item px-2">
-            <a href="#" class="nav-link active">Dashboard</a>
+            <a href="<?php echo base_url() . 'ticket'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'ticket') echo 'active';?>">Dashboard</a>
           </li>
           <li class="nav-item px-2">
             <a href="#" class="nav-link">Tickets</a>
@@ -17,9 +17,9 @@
             <a href="#" class="nav-link">Analysis</a>
           </li>
           <li class="nav-item px-2">
-            <a href="#" class="nav-link">Add User</a>
-          </li>    
-        
+            <a href="<?php echo base_url() . 'user/insert'; ?>" class="nav-link">Add User</a>
+          </li>
+
         </ul>
 
         <ul class="navbar-nav ml-auto">
