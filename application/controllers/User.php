@@ -57,7 +57,7 @@
 			}
 
 		}
-		   public function index()
+		   public function message()
 		   {
 			   $this->load->view('errorMessage');
 			  
