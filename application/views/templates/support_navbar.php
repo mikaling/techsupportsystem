@@ -17,7 +17,7 @@
             <a href="#" class="nav-link">Analysis</a>
           </li>
           <li class="nav-item px-2">
-            <a href="<?php echo base_url() . 'user/insert'; ?>" class="nav-link">Add User</a>
+            <a href="<?php echo base_url() . 'user/insert_validation'; ?>" class="nav-link">Add User</a>
           </li>
 
         </ul>
