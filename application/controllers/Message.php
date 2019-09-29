@@ -49,6 +49,8 @@
     $this->MessageModel->insertMessage($messageData);
     redirect(base_url(). "message/view/$ticket_id");
   }
+
+  //TODO: auto-refresh/auto-retrieve, keep chat div scrolled to bottom, and notifications.
 }
 
 
