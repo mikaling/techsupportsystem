@@ -45,11 +45,11 @@
 			if($result == ''){//if there's no error message:
 				//redirect based on user type
 				if($userType == "staff"){
-					redirect('user/register');
+					redirect('user/insert');
 				}elseif($userType == "support" || $userType == "admin"){
 					redirect('ticket');
 				}else{
-					redirect('user/register');
+					redirect('user/insert');
 				}
 				}else{//remain on login page and set flashdata message as error(see login view)
 					$this->session->set_flashdata('message',$result);
@@ -57,12 +57,46 @@
 			}
 
 		}
+		   public function message()
+		   {
+			   $this->load->view('errorMessage');
+			  
+		   }
 
-    public function insert() {
-      $this->load->view('templates/header');
-      $this->load->view('templates/support_navbar');
-      $this->load->view('add_user');
-      $this->load->view('templates/footer');
-    }
+           public function insert()
+		   {
+               $this->load->view('templates/header');
+			   $this->load->view('templates/support_navbar');
+			   $this->load->view('add_user');
+			   $this->load->view('templates/footer');
+           }
+		   
+		   function insert_validation()
+		   {
+			   $this->load->library('form_validation');
+			   $this->form_validation->set_rules('name','full name','required|trim');
+			   $this->form_validation->set_rules('email','email','required|trim');
+			   $this->form_validation->set_rules('pass','password','required|trim');
+			   $this->form_validation->set_rules('con_pass','confirm password','required|trim|matches[pass]');
+			   
+			   if($this->form_validation->run()==false)
+			   {
+				   $this->insert();
+			   }
+			   else
+			   {
+				   $pass=$this->input->post('pass');
+				   $pass_hash=password_hash($pass,PASSWORD_DEFAULT);
+				   $data=array(
+				        'name' =>$this->input->post('name'),
+						'email'=>$this->input->post('email'),
+						
+						'password'=>$pass_hash
+				   );
+				   $this->UserModel->insert($data);
+				   $this->session->set_flashdata('action','Data Inserted');
+				   redirect('User/login');
+			   }
+		   }
 	}
 	?>

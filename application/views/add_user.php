@@ -24,24 +24,30 @@
                 <i class="fa fa-user icon"></i>
                 <label for="title">Full Name</label>
                   <input type="text" class="form-control" name="name">
+				  <span class="text-danger"><?php echo form_error('name'); ?></span>
               </div>
 
               <div class="form-group">
                 <i class="fa fa-envelope icon"></i>
                 <label for="body">Email Address</label>
                   <input type="email" class="form-control" name="email">
+				 <span class="text-danger"><?php echo form_error('email');?></span>
+				  
               </div>
 
               <div class="form-group">
                 <i class="fa fa-key icon"></i>
                 <label for="body">Password</label>
                 <input class="form-control" type="password" name="pass">
+				<span class="text-danger"><?php echo form_error('pass');?></span>
                </div>
+			   
 
                <div class="form-group">
                 <i class="fa fa-key icon"></i>
                 <label for="body">Confirm Password</label>
                 <input class="form-control" type="password" name="con_pass">
+				<span class="text-danger"><?php echo form_error('con_pass');?></span>
               </div>
 
               <div class="form-group">
