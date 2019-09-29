@@ -14,9 +14,10 @@
                     <th>Category</th>
                     <th>Priority</th>
                     <th></th>
+                    <th></th>
                 </tr>
                 </thead>
-                    
+
                 <tbody>
                     <?php foreach($ticket_two as $row_two): ?>
                     <tr>
@@ -29,6 +30,11 @@
                         <td>
                             <a href="<?php echo base_url() . 'ticket/view/' . $row_two->ticket_id;?>" class="btn btn-secondary">
                                 <i class="fas fa-angle-double-right"></i> Details
+                            </a>
+                        </td>
+                        <td>
+                            <a href="<?php echo base_url() . 'message/view/' . $row_two->ticket_id;?>" class="btn btn-secondary">
+                                <i class="fas fa-comment-alt"></i> Chat
                             </a>
                         </td>
                     </tr>

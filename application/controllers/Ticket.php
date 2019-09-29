@@ -33,15 +33,15 @@
         $data['links_two'] = $this->pagination->create_links();
         $page_two = ($this->uri->segment(2)) ? $this->uri->segment(3) : 0;
         $data['ticket_two'] = $this->TicketModel->get_assigned_tickets($config_two['per_page'], $page_two);
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/support_navbar');
         $this->load->view('unassigned_tickets');
         $this->load->view('assigned_tickets');
         $this->load->view('templates/footer');
-        
+
     }
-      
+
     public function claim() {
         $assigned_count = $this->TicketModel->get_assigned_count();
         $ticket_id = $this->uri->segment(3);
@@ -49,12 +49,7 @@
         $result = $this->TicketModel->claim_ticket($ticket_id, $assigned_count);
         //redirect('user/register');
         if ($result == true) {
-            //echo "<script>alert('Claim successful!')</script>";
-            //$data['ticket_det'] = $this->TicketModel->get_ticket($ticket_id);
-            //$this->load->view('templates/header', $data);
-            //$this->load->view('templates/support_navbar');
-            //$this->load->view('view_ticket');
-            //$this->load->view('templates/footer');
+
             redirect('ticket/view/' . $ticket_id, 2000);
             //redirect('ticket');
         } elseif ($result == false) {
@@ -66,7 +61,7 @@
         }
         //alert('Claim failed! Ticket assignment limit reached.');
     }
-      
+
     public function view() {
         $ticket_id = $this->uri->segment(3);
         $data['ticket_det'] = $this->TicketModel->get_ticket($ticket_id);
@@ -76,7 +71,7 @@
         $this->load->view('view_ticket');
         $this->load->view('templates/footer');
     }
-      
+
     public function complete() {
         $ticket_id = $this->uri->segment(3);
         echo $ticket_id;
