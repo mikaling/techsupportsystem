@@ -19,7 +19,7 @@
             <h4>Add User</h4>
             </div>
           <div class="card-body">
-            <form id="form-one" method="post" action="">
+            <form id="form-one" method="post" action="<?php echo base_url() . 'user/add'; ?>">
               <div class="form-group">
                 <i class="fa fa-user icon"></i>
                 <label for="title">Full Name</label>
@@ -49,9 +49,9 @@
                 <select class="form-control" name="user_type">
                   <option value="staff" selected>Staff</option>
                   <option value="support">Support</option>
-                  <?php if($this->session->$user_type == "admin")
+                  <?php if($this->session->userdata('user_type') == "admin") {
                     echo "<option value='admin'>Admin</option>";
-                  ?>
+                  } ?>
                 </select>
               </div>
 
