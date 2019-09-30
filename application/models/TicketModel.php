@@ -55,15 +55,28 @@
         $query = $this->db->get($this->table);
         return $query->result();
     }
-      
+
     public function complete_ticket($ticket_id, $category, $priority) {
         $det_set = array('category' => $category, 'priority' => $priority);
-        print_r($det_set);
-        print_r($ticket_id);
+        //print_r($det_set);
+        //print_r($ticket_id);
         $this->db->set($det_set);
         $this->db->where('ticket_id', $ticket_id);
         $this->db->update($this->table);
         return true;
+    }
+
+    public function insert_comment($ticket_id, $comment) {
+      $comment_set = array('ticket_id' => $ticket_id, 'comment' => $comment);
+      $this->db->insert('comments', $comment_set);
+      return true;
+    }
+
+    public function get_ticket_comments($ticket_id) {
+      $this->db->where('ticket_id', $ticket_id);
+      $this->db->order_by('timestamp', 'DESC');
+      $query = $this->db->get('comments');
+      return $query->result();
     }
   }
 ?>

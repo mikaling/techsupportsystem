@@ -48,11 +48,19 @@
                     <option value="Low">Low</option>
                   </select>
                 </div>
+
+                <div class="row py-4 mb-4 bg-light">
                 <div class="col-md-3">
                   <button class="btn btn-success btn-block baton" type="submit">
                     <i class="fas fa-check"></i> Save Changes
                   </button>
-                </div>
+                  </div>
+                  <div class="col-md-3">
+                    <a href="#" class="btn btn-warning btn-block" data-toggle="modal" data-target="#addCommentModal">
+                      <i class="fas fa-comment-alt"></i> Add Comment
+                    </a>
+                  </div>
+              </div>
                 </form>
             </div>
           </div>
@@ -60,3 +68,27 @@
       </div>
     </div>
 </section>
+
+<!-- ADD COMMENT MODAL -->
+  <div class="modal" id="addCommentModal">
+    <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+        <div class="modal-header bg-warning text-white">
+          <h5 class="modal-title">Add Comment</h5>
+          <button class="close" data-dismiss="modal">
+            <span>&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form action="<?php echo base_url(). 'ticket/add_comment/' . $ticket_det[0]->ticket_id;?>" method="post" id='comment_form'>
+            <div class="form-group">
+              <textarea name="comment" class="form-control"></textarea>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-warning" form="comment_form" type="submit">Save Changes</button>
+        </div>
+      </div>
+    </div>
+  </div>

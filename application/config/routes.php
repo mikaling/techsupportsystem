@@ -56,3 +56,4 @@ $route['ticket/(:num)'] = 'ticket';
 $route['ticket/claim/(:any)'] = 'ticket/claim';
 $route['ticket/view/(:num)'] = 'ticket/view';
 $route['ticket/complete/(:num)'] = 'ticket/complete';
+$route['ticket/add_comment/(:num)'] = 'ticket/add_comment';

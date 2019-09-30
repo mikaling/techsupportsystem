@@ -33,15 +33,15 @@
         $data['links_two'] = $this->pagination->create_links();
         $page_two = ($this->uri->segment(2)) ? $this->uri->segment(3) : 0;
         $data['ticket_two'] = $this->TicketModel->get_assigned_tickets($config_two['per_page'], $page_two);
-        
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/support_navbar');
         $this->load->view('unassigned_tickets');
         $this->load->view('assigned_tickets');
         $this->load->view('templates/footer');
-        
+
     }
-      
+
     public function claim() {
         $assigned_count = $this->TicketModel->get_assigned_count();
         $ticket_id = $this->uri->segment(3);
@@ -66,26 +66,37 @@
         }
         //alert('Claim failed! Ticket assignment limit reached.');
     }
-      
+
     public function view() {
         $ticket_id = $this->uri->segment(3);
         $data['ticket_det'] = $this->TicketModel->get_ticket($ticket_id);
+        $data['ticket_comments'] = $this->TicketModel->get_ticket_comments($ticket_id);
         //print_r($data['ticket_det']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/support_navbar');
         $this->load->view('view_ticket');
+        $this->load->view('ticket_comments');
         $this->load->view('templates/footer');
     }
-      
+
     public function complete() {
         $ticket_id = $this->uri->segment(3);
-        echo $ticket_id;
+        //echo $ticket_id;
         $category = $this->input->post('category');
         $priority = $this->input->post('priority');
         $rs = $this->TicketModel->complete_ticket($ticket_id, $category, $priority);
         if($rs == true) {
             redirect('ticket');
         }
+    }
+
+    public function add_comment() {
+      $ticket_id = $this->uri->segment(3);
+      $comment = $this->input->post('comment');
+      $rs = $this->TicketModel->insert_comment($ticket_id, $comment);
+      if($rs == true) {
+        redirect('ticket/view/' . $ticket_id);
+      }
     }
 
 

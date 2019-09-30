@@ -6,6 +6,7 @@
 	         parent::__construct();
 			 $this->load->helper('url');
 			 $this->load->model('UserModel');
+       $this->load->helper('form');
 			 //$this->load->view('Login');
 			 //$this->load->library('form_validation');
 			 //$this->session->keep_flashdata('message');
@@ -60,7 +61,7 @@
 		   public function message()
 		   {
 			   $this->load->view('errorMessage');
-			  
+
 		   }
 
            public function insert()
@@ -70,7 +71,7 @@
 			   $this->load->view('add_user');
 			   $this->load->view('templates/footer');
            }
-		   
+
 		   function insert_validation()
 		   {
 			   $this->load->library('form_validation');
@@ -78,7 +79,7 @@
 			   $this->form_validation->set_rules('email','email','required|trim');
 			   $this->form_validation->set_rules('pass','password','required|trim');
 			   $this->form_validation->set_rules('con_pass','confirm password','required|trim|matches[pass]');
-			   
+
 			   if($this->form_validation->run()==false)
 			   {
 				   $this->insert();
@@ -89,9 +90,9 @@
 				   $pass_hash=password_hash($pass,PASSWORD_DEFAULT);
 				   $data=array(
 				        'name' =>$this->input->post('name'),
-						'email'=>$this->input->post('email'),
-						
-						'password'=>$pass_hash
+						    'email'=>$this->input->post('email'),
+                'password'=>$pass_hash,
+                'user_type'=>$this->input->post('user_type')
 				   );
 				   $this->UserModel->insert($data);
 				   $this->session->set_flashdata('action','Data Inserted');

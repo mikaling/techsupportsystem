@@ -19,7 +19,7 @@
             <h4>Add User</h4>
             </div>
           <div class="card-body">
-            <form id="form-one" method="post" action="<?php echo base_url() . 'user/add'; ?>">
+            <form id="form-one" method="post" action="<?php echo base_url() . 'user/insert_validation'; ?>">
               <div class="form-group">
                 <i class="fa fa-user icon"></i>
                 <label for="title">Full Name</label>
@@ -32,7 +32,7 @@
                 <label for="body">Email Address</label>
                   <input type="email" class="form-control" name="email">
 				 <span class="text-danger"><?php echo form_error('email');?></span>
-				  
+
               </div>
 
               <div class="form-group">
@@ -41,7 +41,7 @@
                 <input class="form-control" type="password" name="pass">
 				<span class="text-danger"><?php echo form_error('pass');?></span>
                </div>
-			   
+
 
                <div class="form-group">
                 <i class="fa fa-key icon"></i>
