@@ -1,11 +1,13 @@
 <?php
    class UserModel extends CI_Model
    {
+
+     protected $table = 'users';
 	   public function __construct()
 	   {
 		  parent::__construct();
 	   }
-	   
+
 	   function insert($data)
       {
         $this->db->insert('users', $data);
@@ -18,7 +20,7 @@
 		if($query->num_rows() > 0){
 			foreach($query->result() as $row)
 			{
-			
+
 				//Use encryption after implementation in registration!
 				//$store_password = $this->encrypt->decode($row->password);
 				$hashed_password=$row->password;
@@ -36,8 +38,8 @@
 				{
 					return 'Wrong Password';
 				}
-			
-				
+
+
 			}
 		}
 		else
@@ -45,6 +47,29 @@
 			return 'Wrong Email Address';
 		}
 	   }
-   }   
- 
+
+     public function get_staff() {
+       $this->db->where('user_type', 'staff');
+       $query = $this->db->get($this->table);
+       return $query->result();
+     }
+
+     public function get_support() {
+       $this->db->where('user_type', 'support');
+       $query = $this->db->get($this->table);
+       return $query->result();
+     }
+
+     public function get_admin() {
+       $this->db->where('user_type', 'admin');
+       $query = $this->db->get($this->table);
+       return $query->result();
+     }
+
+     public function delete_user($user_id) {
+       $this->db->where('user_id', $user_id);
+       $this->db->delete($this->table);
+     }
+   }
+
 ?>

@@ -19,6 +19,9 @@
           <li class="nav-item px-2">
             <a href="<?php echo base_url() . 'user/insert'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'user' && $this->uri->segment(2) == 'insert') echo 'active';?>">Add User</a>
           </li>
+          <li class="nav-item px-2">
+            <a href="<?php echo base_url() . 'user/all'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'user' && $this->uri->segment(2) == 'all') echo 'active';?>">Users</a>
+          </li>
 
         </ul>
 
@@ -51,7 +54,7 @@
       <div class="row">
         <div class="col-md-6">
           <h1>
-            <i class="fas fa-cog"></i> Dashboard</h1>
+            <i class="fas <?php echo $header_icon ?>"></i> <?php echo $header?></h1>
         </div>
       </div>
     </div>

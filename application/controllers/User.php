@@ -64,9 +64,11 @@
 
 		   }
 
-           public function insert()
+      public function insert()
 		   {
-               $this->load->view('templates/header');
+         $data['header'] = 'Add User';
+         $data['header_icon'] = 'fa-user-plus';
+         $this->load->view('templates/header', $data);
 			   $this->load->view('templates/support_navbar');
 			   $this->load->view('add_user');
 			   $this->load->view('templates/footer');
@@ -96,8 +98,26 @@
 				   );
 				   $this->UserModel->insert($data);
 				   $this->session->set_flashdata('action','Data Inserted');
-				   redirect('User/login');
+				   redirect('user/all');
 			   }
 		   }
+
+       public function all() {
+         $data['header'] = 'Users';
+         $data['header_icon'] = 'fa-user-circle';
+         $data['staff'] = $this->UserModel->get_staff();
+         $data['support'] = $this->UserModel->get_support();
+         $data['admin'] = $this->UserModel->get_admin();
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/support_navbar');
+         $this->load->view('system_users');
+         $this->load->view('templates/footer');
+       }
+
+       public function delete() {
+         $user_id = $this->uri->segment(3);
+         $this->UserModel->delete_user($user_id);
+         redirect('user/all');
+       }
 	}
 	?>
