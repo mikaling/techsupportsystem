@@ -45,6 +45,12 @@
 			return 'Wrong Email Address';
 		}
 	   }
+	   public function get_user($id)
+	   {
+		   $this->db->where('id', $id);
+		   $query = $this->db->get('users');
+		   return $query->row(); 
+	   }
    }   
  
 ?>

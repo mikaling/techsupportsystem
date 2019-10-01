@@ -58,6 +58,17 @@
 			}
 
 		}
+		
+		   public function profile()
+		   {
+			  $data['title']='User Profile';
+			  $data['header_icon'] = '';
+			  
+			  $this->load->view('templates/header',$data);
+			  $this->load->view('templates/support_navbar');
+			  $this->load->view('profile');
+			  $this->load->view('templates/footer');
+		   }
 		   public function message()
 		   {
 			   $this->load->view('errorMessage');
@@ -89,15 +100,18 @@
 				   $pass=$this->input->post('pass');
 				   $pass_hash=password_hash($pass,PASSWORD_DEFAULT);
 				   $data=array(
-				        'name' =>$this->input->post('name'),
-						    'email'=>$this->input->post('email'),
-                'password'=>$pass_hash,
-                'user_type'=>$this->input->post('user_type')
+				         'name' =>$this->input->post('name'),
+						 'email'=>$this->input->post('email'),
+                         'password'=>$pass_hash,
+                         'user_type'=>$this->input->post('user_type')
 				   );
 				   $this->UserModel->insert($data);
 				   $this->session->set_flashdata('action','Data Inserted');
-				   redirect('User/login');
+				   redirect('user/insert_validation');
 			   }
 		   }
+		   
+		   
+		    
 	}
 	?>
