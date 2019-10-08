@@ -19,6 +19,9 @@
           <li class="nav-item px-2">
             <a href="<?php echo base_url() . 'user/insert'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'user' && $this->uri->segment(2) == 'insert') echo 'active';?>">Add User</a>
           </li>
+          <li class="nav-item px-2">
+            <a href="<?php echo base_url() . 'user/all'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'user' && $this->uri->segment(2) == 'all') echo 'active';?>">Users</a>
+          </li>
 
         </ul>
 
@@ -28,7 +31,7 @@
               <i class="fas fa-user"></i> Welcome <?php echo $this->session->email;?>
             </a>
             <div class="dropdown-menu">
-              <a href="#" class="dropdown-item">
+              <a href="<?php echo base_url() . 'user/profile'; ?>" class="dropdown-item">
                 <i class="fas fa-user-circle"></i> Profile
               </a>
               <a href="#" class="dropdown-item">
@@ -51,7 +54,8 @@
       <div class="row">
         <div class="col-md-6">
           <h1>
-            <i class="fas fa-cog"></i> <?php echo $title; ?></h1>
+
+            <i class="fas <?php echo $header_icon ?>"></i> <?php echo $header?></h1>
         </div>
       </div>
     </div>

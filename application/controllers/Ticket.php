@@ -34,6 +34,9 @@
         $page_two = ($this->uri->segment(2)) ? $this->uri->segment(3) : 0;
         $data['ticket_two'] = $this->TicketModel->get_assigned_tickets($config_two['per_page'], $page_two);
 
+        $data['header'] = 'Dashboard';
+        $data['header_icon'] = 'fa-cog';
+
         $this->load->view('templates/header', $data);
         $this->load->view('templates/support_navbar');
         $this->load->view('unassigned_tickets');
@@ -71,6 +74,8 @@
         $ticket_id = $this->uri->segment(3);
         $data['ticket_det'] = $this->TicketModel->get_ticket($ticket_id);
         $data['ticket_comments'] = $this->TicketModel->get_ticket_comments($ticket_id);
+        $data['header'] = 'View Ticket';
+        $data['header_icon'] = 'fa-eye';
         //print_r($data['ticket_det']);
         $this->load->view('templates/header', $data);
         $this->load->view('templates/support_navbar');

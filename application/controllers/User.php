@@ -41,7 +41,10 @@
 			// }
 
 			$result = $this->UserModel->can_login($this->input->post('email'), $this->input->post('pass'));
+
 			$userType = $this->session->userdata('user_type');
+			
+			
 
 			if($result == ''){//if there's no error message:
 				//redirect based on user type
@@ -61,13 +64,46 @@
 		
 		   public function profile()
 		   {
-			  $data['title']='User Profile';
-			  $data['header_icon'] = '';
+			  $data['header']='User Profile';
+			  $data['header_icon'] = 'fa fa-user';
+			 
+			  $user_id = $this->session->userdata('user_id');
+			  $data['users'] = $this->UserModel->get_user($user_id);
 			  
 			  $this->load->view('templates/header',$data);
 			  $this->load->view('templates/support_navbar');
 			  $this->load->view('profile');
 			  $this->load->view('templates/footer');
+		   }
+		   public function editProfile()
+		   {
+			  $this->form_validation->set_rules('name','full name','required|trim');
+			  $this->form_validation->set_rules('email','email','required|trim');
+			  
+			  if($this->form_validation->run()==false){
+				  $data['header']='Edit Profile';
+			      $data['header_icon'] = 'fas fa-edit';
+			      $this->load->view('templates/header',$data);
+			      $this->load->view('templates/support_navbar');
+			      $this->load->view('editProfile');
+			      $this->load->view('templates/footer');
+			  }else{
+				  $data=array(
+				       'name'=>$this->input->post('name'),
+					   'email'=>$this->input->post('email')
+				  );
+				  $user_id = $this->session->userdata('user_id');
+				  $result = $this->UserModel->Update_User_Data($user_id,$data);
+				  if($result>0){
+					  $this->session->set_flashdata('success_msg','User Profile Updated');
+					  return redirect('user/editProfile');
+				  }else{
+					  $this->session->set_flashdata('error_msg','Error:User Profile Not Updated');
+					  return redirect('user/editProfile');
+				  }
+				  
+			  }
+			  
 		   }
 		   public function message()
 		   {
@@ -75,9 +111,11 @@
 
 		   }
 
-           public function insert()
+      public function insert()
 		   {
-               $this->load->view('templates/header');
+         $data['header'] = 'Add User';
+         $data['header_icon'] = 'fa-user-plus';
+         $this->load->view('templates/header', $data);
 			   $this->load->view('templates/support_navbar');
 			   $this->load->view('add_user');
 			   $this->load->view('templates/footer');
@@ -107,11 +145,28 @@
 				   );
 				   $this->UserModel->insert($data);
 				   $this->session->set_flashdata('action','Data Inserted');
-				   redirect('user/insert_validation');
+
+				   redirect('user/all');
 			   }
 		   }
-		   
-		   
-		    
+
+       public function all() {
+         $data['header'] = 'Users';
+         $data['header_icon'] = 'fa-user-circle';
+         $data['staff'] = $this->UserModel->get_staff();
+         $data['support'] = $this->UserModel->get_support();
+         $data['admin'] = $this->UserModel->get_admin();
+         $this->load->view('templates/header', $data);
+         $this->load->view('templates/support_navbar');
+         $this->load->view('system_users');
+         $this->load->view('templates/footer');
+       }
+
+       public function delete() {
+         $user_id = $this->uri->segment(3);
+         $this->UserModel->delete_user($user_id);
+         redirect('user/all');
+       }
 	}
+
 	?>
