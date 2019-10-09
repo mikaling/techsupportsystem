@@ -89,7 +89,8 @@
         //echo $ticket_id;
         $category = $this->input->post('category');
         $priority = $this->input->post('priority');
-        $rs = $this->TicketModel->complete_ticket($ticket_id, $category, $priority);
+        $status = $this->input->post('status');
+        $rs = $this->TicketModel->complete_ticket($ticket_id, $category, $priority, $status);
         if($rs == true) {
             redirect('ticket');
         }
@@ -102,6 +103,16 @@
       if($rs == true) {
         redirect('ticket/view/' . $ticket_id);
       }
+    }
+
+    public function closed_tickets() {
+      $data['closed_tickets'] = $this->TicketModel->get_closed_tickets();
+      $data['header'] = 'Tickets';
+      $data['header_icon'] = 'fa-cog';
+      $this->load->view('templates/header', $data);
+      $this->load->view('templates/support_navbar');
+      $this->load->view('closed_tickets');
+      $this->load->view('templates/footer');
     }
 
 

@@ -48,6 +48,13 @@
                     <option value="Low">Low</option>
                   </select>
                 </div>
+                <div class="form-group">
+                  <label>Set Status</label>
+                  <select class="form-control" name="status">
+                    <option value="Open" selected>Open</option>
+                    <option value="Closed">Closed</option>
+                  </select>
+                </div>
 
                 <div class="row py-4 mb-4 bg-light">
                 <div class="col-md-3">

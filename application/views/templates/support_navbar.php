@@ -11,7 +11,7 @@
             <a href="<?php echo base_url() . 'ticket'; ?>" class="nav-link <?php if($this->uri->segment(1) == 'ticket') echo 'active';?>">Dashboard</a>
           </li>
           <li class="nav-item px-2">
-            <a href="#" class="nav-link">Tickets</a>
+            <a href="<?php echo base_url() . 'ticket/closed_tickets'; ?>" class="nav-link <?php if($this->uri->segment(2) == 'closed_tickets') echo 'active';?>" class="nav-link">Tickets</a>
           </li>
           <li class="nav-item px-2">
             <a href="#" class="nav-link">Analysis</a>

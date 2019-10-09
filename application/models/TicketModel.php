@@ -56,8 +56,8 @@
         return $query->result();
     }
 
-    public function complete_ticket($ticket_id, $category, $priority) {
-        $det_set = array('category' => $category, 'priority' => $priority);
+    public function complete_ticket($ticket_id, $category, $priority, $status) {
+        $det_set = array('category' => $category, 'priority' => $priority, 'status' => $status);
         //print_r($det_set);
         //print_r($ticket_id);
         $this->db->set($det_set);
@@ -76,6 +76,16 @@
       $this->db->where('ticket_id', $ticket_id);
       $this->db->order_by('timestamp', 'DESC');
       $query = $this->db->get('comments');
+      return $query->result();
+    }
+
+    public function get_closed_tickets() {
+      $this->db->select('tickets.ticket_id, tickets.title, tickets.description,
+      tickets.priority, tickets.status, tickets.category, tickets.opened_date, users.name');
+      $this->db->where('status', 'Closed');
+      $this->db->from('tickets');
+      $this->db->join('users', 'tickets.support_id = users.user_id');
+      $query = $this->db->get();
       return $query->result();
     }
   }
