@@ -32,8 +32,10 @@
                     <div style="border:1px solid; margin: 2px">
                       <strong><?php echo $row->sender; ?></strong>
                       <p><?php echo $row->message; ?></p>
+                      <p><?php echo $row->time; ?></p>
                     </div>
                   <?php endforeach?>
+
                 </div>
                 <!--<input type="text" name="message" required>-->
                 <label for="comment">Message:</label>
@@ -50,3 +52,20 @@
       </div>
     </div>
 </section>
+<script type="text/javascript">
+  var hasFocus = true;
+  comment.onblur = function(){
+    hasFocus = false;
+  }
+
+  comment.onfocus = function(){
+    hasFocus = true;
+  }
+
+  setTimeOut(reload(), 3);
+
+  function reload(){
+    alert("Hello");
+    location.reload(true);
+  }
+</script>
